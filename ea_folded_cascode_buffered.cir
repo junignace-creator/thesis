@@ -1,0 +1,41 @@
+folded cascode EA, VIN=3.3
+.lib /home/johni/.ciel/sky130A/libs.tech/combined/sky130.lib.spice tt
+.temp 27
+Vdd vdd 0 3.3
+Vref vp 0 1.2 ac 1
+Iref1 vdd vbt 1e-06
+XMb1 vbt vbt 0 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=2
+XM5 tail vbt 0 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=12
+XMbp vbp vbp vdd vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=1.0 m=2
+Iref2 vbp 0 1e-06
+Xmbp2 vbnc vbp vdd vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=1.0 m=2
+XmbN vbnc vbnc 0 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=20.0 m=1
+Xmb4n vbpc vbt 0 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=2
+XmbP4 vbpc vbpc vdd vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=16.0 m=1
+XM1 f1 vp tail 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=2
+XM2 f2 vfb tail 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=2
+XM3 f1 vbp vdd vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=1.0 m=10
+XM4 f2 vbp vdd vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=1.0 m=10
+XM6 n1 vbpc f1 vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=0.8 m=3
+XM7 eo vbpc f2 vdd sky130_fd_pr__pfet_g5v0d10v5 w=10 l=0.8 m=3
+XM8 n1 vbnc m1 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=0.8 m=3
+XM9 eo vbnc m2 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=0.8 m=3
+XM10 m1 n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=2
+XM11 m2 n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 w=10 l=1.0 m=2
+Cl out 0 1.3e-12
+Xmpf 0 eo x1 x1 sky130_fd_pr__pfet_g5v0d10v5 w=3.0 l=0.5 m=1
+Ibp vdd x1 2.5e-06
+Xmnf vdd x1 out 0 sky130_fd_pr__nfet_g5v0d10v5 w=3.0 l=0.5 m=1
+Ibn out 0 2.5e-06
+Lfb out xfb 1e12
+Vos vfb xfb {-(2.0-1.2)}
+Cfb vfb 0 1e3
+.control
+set ngbehavior=hsa
+op
+print -i(Vdd)
+print v(out) v(eo) v(f1) v(f2) v(m1) v(m2) v(n1) v(tail)
+ac dec 20 1 1G
+wrdata /tmp/eafc/ac.txt v(out)
+.endc
+.end

@@ -1,0 +1,4 @@
+set PDK_ROOT $env(HOME)/.ciel
+set env(PDK_ROOT) $PDK_ROOT
+set env(PDK) sky130A
+source $PDK_ROOT/sky130A/libs.tech/xschem/xschemrc
