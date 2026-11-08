@@ -4,8 +4,9 @@ mode: op | ac
 """
 import subprocess, sys, os, re, math, cmath
 
-LIB = "/home/johni/.ciel/sky130A/libs.tech/combined/sky130.lib.spice"
-WORK = "/tmp/eafc"
+PDK_ROOT = os.environ.get("PDK_ROOT", os.path.expanduser("~/.ciel"))
+LIB = os.path.join(PDK_ROOT, "sky130A/libs.tech/combined/sky130.lib.spice")
+WORK = os.path.join(os.environ.get("TMPDIR", "/tmp"), "eafc")
 os.makedirs(WORK, exist_ok=True)
 
 VIN = float(sys.argv[1]) if len(sys.argv) > 1 else 3.3

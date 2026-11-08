@@ -21,7 +21,14 @@ Folded-cascode EA (5 V devices, wide-swing mirror, class-A follower buffer), abo
 Meets gain and phase targets for VIN up to 3.3 V; at VIN = 5 V the gain is up to 4 dB short.
 Full-loop (C-multiplier, pass device, CFFRC) stability is not yet simulated.
 
-## Run it (WSL Ubuntu, PDK at ~/.ciel)
+## Run it (WSL Ubuntu)
+
+The PDK location is read from the `PDK_ROOT` environment variable (default `~/.ciel`). The committed `.cir` files
+are generated snapshots with a hardcoded path; regenerate them with `ea_fc.py` on a new machine.
+
+```bash
+export PDK_ROOT=~/.ciel   # or wherever ciel installed the PDK
+```
 
 ```bash
 IT=6e-6 IPT=5e-6 BUF=1 BW=3 BI=2.5e-6 python3 ea_fc.py 3.3 2.0 tt 27 ac

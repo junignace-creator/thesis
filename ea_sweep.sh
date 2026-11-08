@@ -1,10 +1,10 @@
 #!/bin/bash
 # usage: sweep.sh  (runs the trimmed EA over corners and VIN)
-SP=/mnt/c/Users/johni/AppData/Local/Temp/claude/87122db40ac17eac/50a799d3-2f2f-47f5-a5cf-18fb27a9712b/scratchpad
+SP="$(cd "$(dirname "$0")" && pwd)"
 export IT=6e-6 IPT=5e-6 BUF=1 BW=5 BI=2.5e-6
-cd /tmp
+cd "${TMPDIR:-/tmp}"
 run() { # vin vod corner temp
-  out=$(python3 -I $SP/ea_fc.py $1 $2 $3 $4 ac 2>&1)
+  out=$(python3 -I "$SP/ea_fc.py" $1 $2 $3 $4 ac 2>&1)
   iq=$(echo "$out" | grep -E '^-i\(vdd\)' | awk '{printf "%.1f", $3*1e6}')
   vo=$(echo "$out" | grep -E '^v\(out\)' | awk '{printf "%.2f", $3}')
   a0=$(echo "$out" | grep -E '^A0' | sed -E 's/A0 = ([-0-9.]+) dB.*/\1/')

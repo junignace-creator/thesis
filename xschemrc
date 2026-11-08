@@ -1,4 +1,5 @@
-set PDK_ROOT $env(HOME)/.ciel
+# PDK_ROOT may be set in the environment; default is ~/.ciel
+if {[info exists env(PDK_ROOT)]} {set PDK_ROOT $env(PDK_ROOT)} else {set PDK_ROOT $env(HOME)/.ciel}
 set env(PDK_ROOT) $PDK_ROOT
 set env(PDK) sky130A
 source $PDK_ROOT/sky130A/libs.tech/xschem/xschemrc

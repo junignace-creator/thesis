@@ -1,4 +1,5 @@
 folded cascode EA, VIN=3.3
+* NOTE: generated file; the .lib path is machine-specific. Regenerate with ea_fc.py or edit the path.
 .lib /home/johni/.ciel/sky130A/libs.tech/combined/sky130.lib.spice tt
 .temp 27
 Vdd vdd 0 3.3

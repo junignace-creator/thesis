@@ -1,7 +1,8 @@
 import subprocess, re, math, os, sys
 
-LIB = "/home/johni/.ciel/sky130A/libs.tech/combined/sky130.lib.spice"
-WORK = "/tmp/passcmp"
+PDK_ROOT = os.environ.get("PDK_ROOT", os.path.expanduser("~/.ciel"))
+LIB = os.path.join(PDK_ROOT, "sky130A/libs.tech/combined/sky130.lib.spice")
+WORK = os.path.join(os.environ.get("TMPDIR", "/tmp"), "passcmp")
 os.makedirs(WORK, exist_ok=True)
 
 OPTS = {
